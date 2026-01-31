@@ -6,21 +6,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuTriggerBtn = document.getElementById('menu-trigger');
     
     // Theme Logic
+    function updateThemeColorMeta(isDark) {
+        const themeColor = isDark ? '#121212' : '#f8f9fa';
+        let meta = document.querySelector('meta[name="theme-color"]:not([media])');
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.name = 'theme-color';
+            document.head.appendChild(meta);
+        }
+        meta.content = themeColor;
+    }
+
     function initTheme() {
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
         if (systemPrefersDark) {
             document.body.classList.add('dark-theme');
+            updateThemeColorMeta(true);
         } else {
             document.body.classList.remove('dark-theme');
+            updateThemeColorMeta(false);
         }
 
         // Listen for system theme changes
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (e.matches) {
                 document.body.classList.add('dark-theme');
+                updateThemeColorMeta(true);
             } else {
                 document.body.classList.remove('dark-theme');
+                updateThemeColorMeta(false);
             }
         });
     }
@@ -185,61 +200,73 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderQuestion() {
+        const questionContainer = document.querySelector('.quiz-question-container');
+        
         if (currentIndex >= currentQuestions.length) {
             showResults();
             return;
         }
 
-        const question = currentQuestions[currentIndex];
-        const isNameQuestion = quizType === 'names' || (quizType === 'random' && question.type === 'names');
-        
-        if (isNameQuestion) {
-            questionText.textContent = question.question;
-            questionImage.src = `img/no_lable/${question.image}`;
-            
-            // Prepare options: correct answer + 3 random others
-            let options = [question.answer];
-            const otherAnswers = namesQuestions
-                .filter(q => q.answer !== question.answer)
-                .map(q => q.answer);
-            
-            const shuffledOthers = shuffleArray(otherAnswers);
-            options = options.concat(shuffledOthers.slice(0, 3));
-            options = shuffleArray(options);
+        // Apply fade-out
+        questionContainer.classList.add('fade-out');
+        questionContainer.classList.remove('fade-in');
 
-            optionsContainer.innerHTML = '';
-            options.forEach(option => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = option;
-                btn.addEventListener('click', () => handleAnswer(option, btn));
-                optionsContainer.appendChild(btn);
-            });
-        } else {
-            // Logic for 'descriptions'
-            questionText.textContent = question.name; // Название над картинкой
-            questionImage.src = question.image; // Изображение из lable (так как в описаниях img-lable)
+        setTimeout(() => {
+            const question = currentQuestions[currentIndex];
+            const isNameQuestion = quizType === 'names' || (quizType === 'random' && question.type === 'names');
             
-            // Prepare 3 options
-            let options = [question.description];
-            const otherDescriptions = descriptionsQuestions
-                .filter(q => q.description !== question.description)
-                .map(q => q.description);
+            if (isNameQuestion) {
+                questionText.textContent = question.question;
+                questionImage.src = `img/no_lable/${question.image}`;
+                
+                // Prepare options: correct answer + 3 random others
+                let options = [question.answer];
+                const otherAnswers = namesQuestions
+                    .filter(q => q.answer !== question.answer)
+                    .map(q => q.answer);
+                
+                const shuffledOthers = shuffleArray(otherAnswers);
+                options = options.concat(shuffledOthers.slice(0, 3));
+                options = shuffleArray(options);
+
+                optionsContainer.innerHTML = '';
+                options.forEach(option => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = option;
+                    btn.addEventListener('click', () => handleAnswer(option, btn));
+                    optionsContainer.appendChild(btn);
+                });
+            } else {
+                // Logic for 'descriptions'
+                questionText.textContent = question.name; // Название над картинкой
+                questionImage.src = question.image; // Изображение из lable (так как в описаниях img-lable)
+                
+                // Prepare 3 options
+                let options = [question.description];
+                const otherDescriptions = descriptionsQuestions
+                    .filter(q => q.description !== question.description)
+                    .map(q => q.description);
+                
+                const shuffledOthers = shuffleArray(otherDescriptions);
+                options = options.concat(shuffledOthers.slice(0, 2));
+                currentOptions = shuffleArray(options);
+                currentOptionIndex = 0;
+
+                renderDescriptionSwitcher();
+            }
+
+            // Update progress bar
+            const progress = (currentIndex / currentQuestions.length) * 100;
+            quizProgressFill.style.width = `${progress}%`;
             
-            const shuffledOthers = shuffleArray(otherDescriptions);
-            options = options.concat(shuffledOthers.slice(0, 2));
-            currentOptions = shuffleArray(options);
-            currentOptionIndex = 0;
+            quizContainer.style.display = 'flex';
+            resultsContainer.style.display = 'none';
 
-            renderDescriptionSwitcher();
-        }
-
-        // Update progress bar
-        const progress = (currentIndex / currentQuestions.length) * 100;
-        quizProgressFill.style.width = `${progress}%`;
-        
-        quizContainer.style.display = 'flex';
-        resultsContainer.style.display = 'none';
+            // Apply fade-in
+            questionContainer.classList.remove('fade-out');
+            questionContainer.classList.add('fade-in');
+        }, 300);
     }
 
     function renderDescriptionSwitcher() {
@@ -331,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex++;
             saveSession();
             renderQuestion();
-        }, 2000);
+        }, 1500);
     }
 
     function showResults() {

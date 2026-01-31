@@ -4,8 +4,8 @@
   "description": "Приложение для подготовки бортпроводников к бизнес-классу",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3498db",
+  "background_color": "#f8f9fa",
+  "theme_color": "#f8f9fa",
   "icons": [
     {
       "src": "img/ico/icon192x192.png",
