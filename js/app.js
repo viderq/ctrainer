@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return array;
     }
 
-    function renderQuestion() {
+    async function renderQuestion() {
         const questionContainer = document.querySelector('.quiz-question-container');
         
         if (currentIndex >= currentQuestions.length) {
@@ -211,62 +211,75 @@ document.addEventListener('DOMContentLoaded', function() {
         questionContainer.classList.add('fade-out');
         questionContainer.classList.remove('fade-in');
 
-        setTimeout(() => {
-            const question = currentQuestions[currentIndex];
-            const isNameQuestion = quizType === 'names' || (quizType === 'random' && question.type === 'names');
+        const question = currentQuestions[currentIndex];
+        const isNameQuestion = quizType === 'names' || (quizType === 'random' && question.type === 'names');
+        const nextImageUrl = isNameQuestion ? `img/no_lable/${question.image}` : question.image;
+
+        // Preload image
+        const imgPreload = new Image();
+        const imageLoaded = new Promise((resolve) => {
+            imgPreload.onload = resolve;
+            imgPreload.onerror = resolve; // Continue even if image fails
+        });
+        imgPreload.src = nextImageUrl;
+
+        // Wait for both animation (fade-out) and image preloading
+        await Promise.all([
+            new Promise(resolve => setTimeout(resolve, 300)),
+            imageLoaded
+        ]);
+
+        if (isNameQuestion) {
+            questionText.textContent = question.question;
+            questionImage.src = nextImageUrl;
             
-            if (isNameQuestion) {
-                questionText.textContent = question.question;
-                questionImage.src = `img/no_lable/${question.image}`;
-                
-                // Prepare options: correct answer + 3 random others
-                let options = [question.answer];
-                const otherAnswers = namesQuestions
-                    .filter(q => q.answer !== question.answer)
-                    .map(q => q.answer);
-                
-                const shuffledOthers = shuffleArray(otherAnswers);
-                options = options.concat(shuffledOthers.slice(0, 3));
-                options = shuffleArray(options);
-
-                optionsContainer.innerHTML = '';
-                options.forEach(option => {
-                    const btn = document.createElement('button');
-                    btn.className = 'option-btn';
-                    btn.textContent = option;
-                    btn.addEventListener('click', () => handleAnswer(option, btn));
-                    optionsContainer.appendChild(btn);
-                });
-            } else {
-                // Logic for 'descriptions'
-                questionText.textContent = question.name; // Название над картинкой
-                questionImage.src = question.image; // Изображение из lable (так как в описаниях img-lable)
-                
-                // Prepare 3 options
-                let options = [question.description];
-                const otherDescriptions = descriptionsQuestions
-                    .filter(q => q.description !== question.description)
-                    .map(q => q.description);
-                
-                const shuffledOthers = shuffleArray(otherDescriptions);
-                options = options.concat(shuffledOthers.slice(0, 2));
-                currentOptions = shuffleArray(options);
-                currentOptionIndex = 0;
-
-                renderDescriptionSwitcher();
-            }
-
-            // Update progress bar
-            const progress = (currentIndex / currentQuestions.length) * 100;
-            quizProgressFill.style.width = `${progress}%`;
+            // Prepare options: correct answer + 3 random others
+            let options = [question.answer];
+            const otherAnswers = namesQuestions
+                .filter(q => q.answer !== question.answer)
+                .map(q => q.answer);
             
-            quizContainer.style.display = 'flex';
-            resultsContainer.style.display = 'none';
+            const shuffledOthers = shuffleArray(otherAnswers);
+            options = options.concat(shuffledOthers.slice(0, 3));
+            options = shuffleArray(options);
 
-            // Apply fade-in
-            questionContainer.classList.remove('fade-out');
-            questionContainer.classList.add('fade-in');
-        }, 300);
+            optionsContainer.innerHTML = '';
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.addEventListener('click', () => handleAnswer(option, btn));
+                optionsContainer.appendChild(btn);
+            });
+        } else {
+            // Logic for 'descriptions'
+            questionText.textContent = question.name; // Название над картинкой
+            questionImage.src = nextImageUrl; // Изображение из lable (так как в описаниях img-lable)
+            
+            // Prepare 3 options
+            let options = [question.description];
+            const otherDescriptions = descriptionsQuestions
+                .filter(q => q.description !== question.description)
+                .map(q => q.description);
+            
+            const shuffledOthers = shuffleArray(otherDescriptions);
+            options = options.concat(shuffledOthers.slice(0, 2));
+            currentOptions = shuffleArray(options);
+            currentOptionIndex = 0;
+
+            renderDescriptionSwitcher();
+        }
+
+        // Update progress bar
+        const progress = (currentIndex / currentQuestions.length) * 100;
+        quizProgressFill.style.width = `${progress}%`;
+        
+        quizContainer.style.display = 'flex';
+        resultsContainer.style.display = 'none';
+
+        // Apply fade-in
+        questionContainer.classList.remove('fade-out');
+        questionContainer.classList.add('fade-in');
     }
 
     function renderDescriptionSwitcher() {
