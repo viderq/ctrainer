@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Theme Logic
     function updateThemeColorMeta(isDark) {
-        const themeColor = isDark ? '#121212' : '#ffffff';
+        const themeColor = isDark ? '#1e1e1e' : '#ffffff';
         let meta = document.querySelector('meta[name="theme-color"]');
         if (!meta) {
             meta = document.createElement('meta');

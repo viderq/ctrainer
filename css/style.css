@@ -23,15 +23,15 @@
 }
 
 .dark-theme {
-    --bg-color: #121212;
+    --bg-color: #1e1e1e;
     --container-bg: #1e1e1e;
     --text-primary: #e0e0e0;
     --text-secondary: #b0b0b0;
     --header-border: #333333;
     --item-bg: #2d2d2d;
     --item-border: #444444;
-    --item-shadow: rgba(0, 0, 0, 0.3);
-    --item-shadow-hover: rgba(0, 0, 0, 0.4);
+    --item-shadow: rgba(0, 0, 0, 0.4);
+    --item-shadow-hover: rgba(0, 0, 0, 0.5);
     --accent-color: #3498db;
     --option-border: #444444;
     --progress-bg: #333333;
@@ -63,7 +63,6 @@ body {
     flex-grow: 1;
     position: relative;
     background-color: var(--container-bg);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s;
 }
 
