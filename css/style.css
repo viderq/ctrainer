@@ -6,8 +6,8 @@
 }
 
 :root {
-    --bg-color: #f8f9fa;
-    --container-bg: white;
+    --bg-color: #ffffff;
+    --container-bg: #ffffff;
     --text-primary: #333;
     --text-secondary: #7f8c8d;
     --header-border: #f0f0f0;
@@ -19,7 +19,7 @@
     --option-border: #ecf0f1;
     --progress-bg: #f0f0f0;
     --overlay-bg: rgba(255, 255, 255, 0.98);
-    --quiz-bg: #f8f9fa;
+    --quiz-bg: #ffffff;
 }
 
 .dark-theme {
@@ -37,6 +37,11 @@
     --progress-bg: #333333;
     --overlay-bg: rgba(30, 30, 30, 0.98);
     --quiz-bg: #2d2d2d;
+}
+
+html {
+    background-color: var(--bg-color);
+    transition: background-color 0.3s;
 }
 
 body {
@@ -604,7 +609,12 @@ body {
     }
 }
 
-/* Убираем скроллбар везде */
-::-webkit-scrollbar {
-    display: none;
+/* Скрываем скроллбар для всех браузеров */
+* {
+    -ms-overflow-style: none;  /* IE и Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari и Opera */
 }
