@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Подготовка к бизнес-классу</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <link rel="apple-touch-icon" href="img/lable/Бифитер.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Главный экран -->
+        <div class="screen active" id="main-screen">
+            <div class="header">
+                <div class="header-content">
+                    <h1>Подготовка к бизнес-классу</h1>
+                    <p>Изучите ключевые аспекты обслуживания</p>
+                </div>
+            </div>
+            
+            <div class="menu-grid">
+                <a href="#" class="menu-item wine" data-screen="wine-screen">
+                    <i class="fas fa-wine-glass-alt"></i>
+                    <span>Вина</span>
+                </a>
+                
+                <a href="#" class="menu-item service" data-screen="service-screen">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Сервис</span>
+                </a>
+                
+                <a href="#" class="menu-item stages" data-screen="stages-screen">
+                    <i class="fas fa-list-ol"></i>
+                    <span>Этапы</span>
+                </a>
+                
+                <a href="#" class="menu-item quiz" data-screen="quiz-screen">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Тест</span>
+                </a>
+            </div>
+            
+            <div class="footer">
+                <p>Приложение для подготовки бортпроводников</p>
+            </div>
+        </div>
+        
+        <!-- Экран "Вина" -->
+        <div class="screen" id="wine-screen">
+            <div class="header">
+                <button class="back-btn" data-screen="main-screen">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                
+                <div class="header-content">
+                    <h1>Винная карта</h1>
+                    <p>Изучите ассортимент и особенности вин</p>
+                </div>
+            </div>
+            
+            <div class="submenu-grid">
+                <a href="#" class="submenu-item" id="random-quiz-btn">
+                    <i class="fas fa-random"></i>
+                    <span>Все подряд</span>
+                </a>
+                
+                <a href="#" class="submenu-item" id="wine-names-btn">
+                    <i class="fas fa-tags"></i>
+                    <span>Наименования</span>
+                </a>
+                
+                <a href="#" class="submenu-item" id="wine-descriptions-btn">
+                    <i class="fas fa-align-left"></i>
+                    <span>Описания</span>
+                </a>
+                
+                <a href="#" class="submenu-item" id="cocktails-btn" data-screen="cocktails-screen">
+                    <i class="fas fa-cocktail"></i>
+                    <span>Коктейли</span>
+                </a>
+            </div>
+            
+            <div class="notification" style="margin-top: 30px;">
+                <i class="fas fa-wine-bottle"></i>
+                <h2>Изучайте вина</h2>
+                <p>Выберите категорию для изучения вин, их наименований, описаний или коктейлей на их основе</p>
+            </div>
+        </div>
+        
+        <!-- Экран "Сервис" -->
+        <div class="screen" id="service-screen">
+            <div class="header">
+                <button class="back-btn" data-screen="main-screen">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                
+                <div class="header-content">
+                    <h1>Сервис</h1>
+                    <p>Стандарты обслуживания в бизнес-классе</p>
+                </div>
+            </div>
+            
+            <div class="notification">
+                <i class="fas fa-tools"></i>
+                <h2>Раздел в разработке</h2>
+                <p>Мы активно работаем над разделом "Сервис". Здесь вы найдете стандарты обслуживания, правила сервировки и взаимодействия с пассажирами.</p>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Экран "Этапы" -->
+        <div class="screen" id="stages-screen">
+            <div class="header">
+                <button class="back-btn" data-screen="main-screen">
+                    <i class="fas fa-arrow-left"></i>                   
+                </button>
+                
+                <div class="header-content">
+                    <h1>Этапы</h1>
+                    <p>Поэтапная подготовка к рейсу</p>
+                </div>
+            </div>
+            
+            <div class="notification">
+                <i class="fas fa-tasks"></i>
+                <h2>Раздел в разработке</h2>
+                <p>Раздел "Этапы" скоро будет доступен. Здесь вы найдете пошаговые инструкции подготовки к рейсу, чек-листы и временные рамки.</p>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран "Коктейли" -->
+        <div class="screen" id="cocktails-screen">
+            <div class="header">
+                <button class="back-btn" data-screen="wine-screen">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                
+                <div class="header-content">
+                    <h1>Коктейли</h1>
+                    <p>Классические и авторские напитки</p>
+                </div>
+            </div>
+            
+            <div class="notification">
+                <i class="fas fa-glass-martini-alt"></i>
+                <h2>Раздел в разработке</h2>
+                <p>Мы готовим для вас базу рецептов коктейлей. Совсем скоро здесь появятся пропорции, способы приготовления и правила подачи.</p>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Экран "Тест" -->
+        <div class="screen" id="quiz-screen">
+            <div class="header">
+                <button id="menu-trigger" class="menu-trigger-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="header-content">
+                    <h1 id="quiz-title">Тестирование</h1>
+                </div>
+            </div>
+
+            <!-- Quiz Content Container -->
+            <div id="quiz-content" class="quiz-container">
+                <div class="quiz-progress">
+                    <div id="quiz-progress-fill" class="quiz-progress-fill"></div>
+                </div>
+
+                <div class="quiz-question-container">
+                    <div id="question-text" class="question-text">Вопрос загружается...</div>
+                    <div class="question-image-wrapper">
+                        <img id="question-image" src="" alt="Question Image" class="question-image">
+                    </div>
+                    <div id="options-container" class="options-container">
+                        <!-- Options will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Container -->
+            <div id="results-content" class="results-container" style="display: none;">
+                <div class="results-icon"><i class="fas fa-trophy"></i></div>
+                <div class="results-score">Отлично!</div>
+                <div class="results-text">Вы прошли тест.</div>
+                <div class="btn-block">
+                    <button id="retry-btn" class="btn-main">Начать заново</button>
+                    <button class="btn-main" style="background-color: #95a5a6;" data-screen="main-screen">В меню</button>
+                </div>
+            </div>
+
+            <!-- Quiz Menu Overlay -->
+            <div id="quiz-menu-overlay" class="quiz-menu-overlay">
+                <div class="quiz-menu-content">
+                    <h3 style="text-align: center; margin-bottom: 10px;">Меню теста</h3>
+                    <button id="resume-quiz" class="quiz-menu-btn primary">
+                        <i class="fas fa-play"></i> Продолжить тест
+                    </button>
+                    <button id="restart-quiz" class="quiz-menu-btn">
+                        <i class="fas fa-redo"></i> Начать заново
+                    </button>
+                    <button id="exit-quiz" class="quiz-menu-btn" style="color: #e74c3c;">
+                        <i class="fas fa-home"></i> Выйти в главное меню
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service_worker.js')
+                    .then(reg => console.log('Service Worker registered', reg))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+    </script>
+</body>
+</html>

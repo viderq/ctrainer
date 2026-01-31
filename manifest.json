@@ -1,0 +1,21 @@
+{
+  "name": "Wine Trainer Business Class",
+  "short_name": "WineTrainer",
+  "description": "Приложение для подготовки бортпроводников к бизнес-классу",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3498db",
+  "icons": [
+    {
+      "src": "img/ico/icon192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/ico/icon512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
