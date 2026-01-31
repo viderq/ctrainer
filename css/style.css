@@ -10,13 +10,13 @@
     --container-bg: #ffffff;
     --text-primary: #333;
     --text-secondary: #7f8c8d;
-    --header-border: #f0f0f0;
+    --header-border: #e0e0e0;
     --item-bg: white;
-    --item-border: #f1f1f1;
-    --item-shadow: rgba(0, 0, 0, 0.05);
-    --item-shadow-hover: rgba(0, 0, 0, 0.08);
+    --item-border: #e0e0e0;
+    --item-shadow: rgba(0, 0, 0, 0.08);
+    --item-shadow-hover: rgba(0, 0, 0, 0.12);
     --accent-color: #3498db;
-    --option-border: #ecf0f1;
+    --option-border: #dcdde1;
     --progress-bg: #f0f0f0;
     --overlay-bg: rgba(255, 255, 255, 0.98);
     --quiz-bg: #ffffff;
