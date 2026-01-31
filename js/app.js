@@ -64,10 +64,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function showToast(message) {
+        let toast = document.querySelector('.toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast';
+            document.body.appendChild(toast);
+        }
+        
+        toast.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
     menuItems.forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
             const targetScreenId = this.getAttribute('data-screen');
+            
+            if (this.classList.contains('quiz') && targetScreenId === 'quiz-screen') {
+                const sessions = ['wine_names_session', 'wine_descriptions_session', 'wine_random_session'];
+                let latestSession = null;
+                let latestType = '';
+                
+                sessions.forEach(key => {
+                    const data = localStorage.getItem(key);
+                    if (data) {
+                        const parsed = JSON.parse(data);
+                        if (!latestSession || parsed.lastUpdated > latestSession.lastUpdated) {
+                            latestSession = parsed;
+                            latestType = key === 'wine_names_session' ? 'names' : 
+                                         key === 'wine_descriptions_session' ? 'descriptions' : 'random';
+                        }
+                    }
+                });
+                
+                if (latestSession) {
+                    loadQuiz(latestType);
+                } else {
+                    showToast('Никакого теста еще не начато');
+                }
+                return;
+            }
+
             if (targetScreenId) showScreen(targetScreenId);
         });
     });
@@ -465,6 +507,14 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             startNewQuiz();
         }
+    });
+
+    document.querySelectorAll('.back-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.closest('#quiz-screen')) {
+                saveSession();
+            }
+        });
     });
 
     function updateMainScreenStatus() {

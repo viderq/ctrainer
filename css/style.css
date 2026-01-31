@@ -291,11 +291,46 @@ body {
     border-top: 1px solid var(--header-border);
 }
 
-/* Quiz Styles */
-.quiz-container {
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--item-bg);
+    color: var(--text-primary);
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 2000;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+    opacity: 0;
+    white-space: nowrap;
+    border: 1px solid var(--item-border);
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast i {
+    color: #f39c12;
+}
+
+@media (max-width: 480px) {
+    .toast {
+        width: 90%;
+        bottom: 20px;
+        white-space: normal;
+        text-align: center;
+        justify-content: center;
+    }
 }
 
 .quiz-question-container {
