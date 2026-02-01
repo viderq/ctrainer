@@ -79,7 +79,7 @@
                     <span>Описания</span>
                 </a>
                 
-                <a href="#" class="submenu-item" id="cocktails-btn" data-screen="cocktails-screen">
+                <a href="#" class="submenu-item" id="cocktails-btn">
                     <i class="fas fa-cocktail"></i>
                     <span>Коктейли</span>
                 </a>
@@ -89,6 +89,87 @@
                 <i class="fas fa-wine-bottle"></i>
                 <h2>Изучайте вина</h2>
                 <p>Выберите категорию для изучения вин, их наименований, описаний или коктейлей на их основе</p>
+            </div>
+        </div>
+
+        <!-- Экран "Коктейли" (Мини-игра) -->
+        <div class="screen" id="cocktails-screen">
+            <div class="header">
+                <button class="back-btn" data-screen="wine-screen">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="header-content">
+                    <h1>Коктейли</h1>
+                    <p>Приготовьте напиток по рецепту</p>
+                </div>
+                <button id="recipe-hint-btn" class="hint-btn">
+                    <i class="far fa-lightbulb"></i>
+                </button>
+            </div>
+
+            <div class="cocktail-game-container">
+                <!-- Скрытое боковое меню -->
+                <div id="ingredients-menu" class="ingredients-side-menu">
+                    <div class="menu-header">
+                        Ингредиенты
+                        <button id="close-ingredients" class="close-menu-btn">&times;</button>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">Алкоголь</div>
+                            <div class="accordion-content" id="list-alcohol"></div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">Соки и Газ. напитки</div>
+                            <div class="accordion-content" id="list-soft"></div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">Топинги</div>
+                            <div class="accordion-content" id="list-toppings"></div>
+                        </div>
+                    </div>
+                </div>
+                <button id="toggle-ingredients" class="toggle-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Центральная область со стаканом -->
+                <div class="glass-area">
+                    <div class="glass-container">
+                        <div id="liquid-layer" class="liquid"></div>
+                        <svg id="glass-svg" viewBox="0 0 100 150" class="glass-svg">
+                            <path d="M20,10 L80,10 L75,140 L25,140 Z" fill="rgba(255,255,255,0.1)" stroke="white" stroke-width="2"/>
+                            <!-- Логотип Аэрофлот -->
+                            <g id="aeroflot-logo" opacity="0.3" transform="translate(30, 50) scale(0.4)">
+                                <path d="M10,20 Q50,0 90,20 L90,30 Q50,10 10,30 Z" fill="white"/>
+                                <text x="15" y="45" fill="white" font-size="12" font-family="Arial">АЭРОФЛОТ</text>
+                            </g>
+                        </svg>
+                        <div id="decorations-container"></div>
+                    </div>
+                </div>
+
+                <!-- Кнопки управления -->
+                <div class="controls-area">
+                    <div class="action-buttons">
+                        <button id="add-lemon-btn" class="action-btn">Долька лимона</button>
+                        <button id="add-stick-btn" class="action-btn">Коктейльная палочка</button>
+                    </div>
+                    <div id="pour-area" class="pour-area">
+                        <span>Удерживайте, чтобы налить</span>
+                    </div>
+                    <div id="pour-animation-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно рецепта -->
+        <div id="recipe-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-cocktail-name"></h2>
+                <div id="modal-cocktail-recipe"></div>
+                <button id="start-cocktail-btn" class="btn-main">Начать готовить</button>
             </div>
         </div>
         
