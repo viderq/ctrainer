@@ -817,7 +817,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const submitBtn = document.createElement('button');
                 submitBtn.className = 'submit-answer-btn';
-                submitBtn.textContent = 'Отправить';
+                submitBtn.textContent = 'Ответить';
                 
                 const handleSubmit = () => {
                     const val = input.value;
@@ -825,6 +825,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         handleAnswer(val, submitBtn, input);
                     }
                 };
+                
+                input.addEventListener('focus', () => {
+                    setTimeout(() => {
+                        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                });
                 
                 submitBtn.addEventListener('click', handleSubmit);
                 input.addEventListener('keypress', (e) => {

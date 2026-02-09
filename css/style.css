@@ -378,7 +378,8 @@ body {
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    flex-shrink: 0; /* Prevent shrinking */
+    flex-shrink: 1; /* Allow shrinking on small screens */
+    min-height: 100px;
 }
 
 .question-image {
@@ -854,10 +855,12 @@ body {
 
 /* Input Styles for Quiz */
 .answer-input-container {
-    margin-top: 20px;
+    margin-top: auto; /* Push to bottom of available space but above keyboard */
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
 }
 
 .answer-input {
@@ -940,6 +943,24 @@ body {
     background-color: #3498db;
     width: 0%;
     transition: width 0.3s ease;
+}
+
+/* Адаптация для мобильных устройств с открытой клавиатурой */
+@media (max-height: 500px) {
+    .question-image-wrapper {
+        height: 120px;
+        margin-bottom: 10px;
+    }
+    .question-text {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .answer-input-container {
+        gap: 8px;
+    }
+    .answer-input, .submit-answer-btn {
+        padding: 10px;
+    }
 }
 
 /* Адаптация для очень маленьких экранов */
