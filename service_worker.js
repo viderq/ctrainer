@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wine-trainer-v6';
+const CACHE_NAME = 'wine-trainer-v7';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
