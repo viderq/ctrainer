@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wine-trainer-v7';
+const CACHE_NAME = 'wine-trainer-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -27,6 +27,9 @@ const ASSETS_TO_CACHE = [
   './img/no_lable/Лансон Ле Блэк Креасьон Брют.png',
   './img/no_lable/Доу’з Файн Руби.png',
   './img/no_lable/Фрапен.png',
+  './img/no_lable/Азюр Криница.png',
+  './img/no_lable/Серрано Россо Конеро Умани Ронки.png',
+  './img/no_lable/Шенен Блан Симонсиг.png',
   './img/lable/Мартини Фиеро.png',
   './img/lable/Пинотаж Симонсиг.png',
   './img/lable/Шато Тамань Селект Блан Брют.png',
@@ -49,6 +52,9 @@ const ASSETS_TO_CACHE = [
   './img/lable/Доу’з Файн Руби.png',
   './img/lable/Фрапен.png',
   './img/lable/Моэт и Шандон ИмпериальБрют.png',
+  './img/lable/Шенен Блан Симонсиг.png',
+  './img/lable/Серрано Россо Конеро Умани Ронки.png',
+  './img/lable/Азюр Криница.png',
   './img/ico/icon192x192.png',
   './img/ico/icon512x512.png'
 ];
