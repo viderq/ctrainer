@@ -230,6 +230,83 @@ body {
     text-align: center;
 }
 
+/* Randomizer Section */
+.randomizer-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--item-bg);
+    border-radius: 20px;
+    border: 1px solid var(--item-border);
+    box-shadow: var(--item-shadow);
+    text-align: center;
+}
+
+.randomizer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.randomizer-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.random-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--item-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.random-btn:active {
+    transform: scale(0.95);
+}
+
+.random-btn i {
+    font-size: 20px;
+    color: #9b59b6;
+}
+
+.randomizer-result {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: var(--bg-primary);
+    border-radius: 10px;
+    border: 1px dashed var(--item-border);
+}
+
+.result-placeholder {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.result-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #9b59b6;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .notification {
     background-color: var(--item-bg);
     border-radius: 20px;

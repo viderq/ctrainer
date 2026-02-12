@@ -549,6 +549,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initCocktailGame();
 
+    // === Randomizer Logic ===
+    function initRandomizer() {
+        const randomDrinkBtn = document.getElementById('random-drink-btn');
+        const randomCocktailBtn = document.getElementById('random-cocktail-btn');
+        const resultContainer = document.getElementById('randomizer-result');
+        const resultPlaceholder = resultContainer.querySelector('.result-placeholder');
+        const resultText = resultContainer.querySelector('.result-text');
+
+        async function getRandomDrink() {
+            try {
+                const response = await fetch('data/wine_names.json');
+                const drinks = await response.json();
+                if (drinks && drinks.length > 0) {
+                    const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
+                    displayResult(randomDrink.answer || randomDrink.name);
+                }
+            } catch (error) {
+                console.error('Error fetching drinks:', error);
+                showToast('Ошибка при загрузке напитков');
+            }
+        }
+
+        function getRandomCocktail() {
+            if (COCKTAILS && COCKTAILS.length > 0) {
+                const randomCocktail = COCKTAILS[Math.floor(Math.random() * COCKTAILS.length)];
+                displayResult(randomCocktail.name);
+            }
+        }
+
+        function displayResult(text) {
+            resultPlaceholder.style.display = 'none';
+            resultText.style.display = 'block';
+            resultText.textContent = text;
+            
+            // Re-trigger animation
+            resultText.style.animation = 'none';
+            resultText.offsetHeight; // trigger reflow
+            resultText.style.animation = null;
+        }
+
+        randomDrinkBtn.addEventListener('click', getRandomDrink);
+        randomCocktailBtn.addEventListener('click', getRandomCocktail);
+    }
+
+    initRandomizer();
+
     // === Levenshtein Distance for Answer Verification ===
     function getLevenshteinDistance(a, b) {
         if (a.length === 0) return b.length;
