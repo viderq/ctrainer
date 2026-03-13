@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Главный экран -->
+        
         <div class="screen active" id="main-screen">
             <div class="header">
                 <div class="header-content">
@@ -50,7 +50,7 @@
             </div>
         </div>
         
-        <!-- Экран "Вина" -->
+        
         <div class="screen" id="wine-screen">
             <div class="header">
                 <button class="back-btn" data-screen="main-screen">
@@ -85,7 +85,7 @@
                 </a>
             </div>
 
-            <!-- Рандомайзер -->
+            
             <div class="randomizer-section">
                 <h3>Рандомайзер</h3>
                 <div class="randomizer-buttons">
@@ -111,7 +111,7 @@
             </div>
         </div>
 
-        <!-- Экран "Коктейли" (Мини-игра) -->
+        
         <div class="screen" id="cocktails-screen">
             <div class="header">
                 <button class="back-btn" data-screen="wine-screen">
@@ -127,7 +127,7 @@
             </div>
 
             <div class="cocktail-game-container">
-                <!-- Скрытое боковое меню -->
+                
                 <div id="ingredients-menu" class="ingredients-side-menu">
                     <div class="menu-header">
                         Ингредиенты
@@ -152,13 +152,13 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
 
-                <!-- Центральная область со стаканом -->
+                
                 <div class="glass-area">
                     <div class="glass-container">
                         <div id="liquid-layer" class="liquid"></div>
                         <svg id="glass-svg" viewBox="0 0 100 150" class="glass-svg">
                             <path d="M20,10 L80,10 L75,140 L25,140 Z" fill="rgba(255,255,255,0.1)" stroke="white" stroke-width="2"/>
-                            <!-- Логотип Аэрофлот -->
+                            
                             <g id="aeroflot-logo" opacity="0.3" transform="translate(30, 50) scale(0.4)">
                                 <path d="M10,20 Q50,0 90,20 L90,30 Q50,10 10,30 Z" fill="white"/>
                                 <text x="15" y="45" fill="white" font-size="12" font-family="Arial">АЭРОФЛОТ</text>
@@ -168,7 +168,7 @@
                     </div>
                 </div>
 
-                <!-- Кнопки управления -->
+                
                 <div class="controls-area">
                     <div class="action-buttons">
                         <button id="add-lemon-btn" class="action-btn">Долька лимона</button>
@@ -182,7 +182,7 @@
             </div>
         </div>
 
-        <!-- Модальное окно рецепта -->
+        
         <div id="recipe-modal" class="modal">
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
@@ -192,7 +192,7 @@
             </div>
         </div>
         
-        <!-- Экран "Сервис" -->
+        
         <div class="screen" id="service-screen">
             <div class="header">
                 <button class="back-btn" data-screen="main-screen">
@@ -215,7 +215,7 @@
             </div>
         </div>
         
-        <!-- Экран "Этапы" -->
+        
         <div class="screen" id="stages-screen">
             <div class="header">
                 <button class="back-btn" data-screen="main-screen">
@@ -238,7 +238,7 @@
             </div>
         </div>
 
-        <!-- Экран "Коктейли" -->
+        
         <div class="screen" id="cocktails-screen">
             <div class="header">
                 <button class="back-btn" data-screen="wine-screen">
@@ -261,7 +261,7 @@
             </div>
         </div>
         
-        <!-- Экран "Тест" -->
+        
         <div class="screen" id="quiz-screen">
             <div class="header">
                 <button id="menu-trigger" class="menu-trigger-btn">
@@ -273,7 +273,7 @@
                 </div>
             </div>
 
-            <!-- Quiz Content Container -->
+            
             <div id="quiz-content" class="quiz-container">
                 <div class="quiz-progress">
                     <div id="quiz-progress-fill" class="quiz-progress-fill"></div>
@@ -285,12 +285,12 @@
                         <img id="question-image" src="" alt="Question Image" class="question-image">
                     </div>
                     <div id="options-container" class="options-container">
-                        <!-- Options will be injected here -->
+                        
                     </div>
                 </div>
             </div>
 
-            <!-- Results Container -->
+            
             <div id="results-content" class="results-container" style="display: none;">
                 <div class="results-icon"><i class="fas fa-trophy"></i></div>
                 <div class="results-score">Отлично!</div>
@@ -301,7 +301,7 @@
                 </div>
             </div>
 
-            <!-- Quiz Menu Overlay -->
+            
             <div id="quiz-menu-overlay" class="quiz-menu-overlay">
                 <div class="quiz-menu-content">
                     <h3 style="text-align: center; margin-bottom: 10px;">Меню теста</h3>

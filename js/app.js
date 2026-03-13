@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // === Core Navigation & UI ===
+    
     const screens = document.querySelectorAll('.screen');
     const menuItems = document.querySelectorAll('.menu-item, .submenu-item, .back-btn');
     const quizMenuOverlay = document.getElementById('quiz-menu-overlay');
     const menuTriggerBtn = document.getElementById('menu-trigger');
     
-    // Theme Logic
+    
     function updateThemeColorMeta(isDark) {
         const themeColor = isDark ? '#1e1e1e' : '#ffffff';
         let meta = document.querySelector('meta[name="theme-color"]');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateThemeColorMeta(false);
         }
 
-        // Listen for system theme changes
+        
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (e.matches) {
                 document.body.classList.add('dark-theme');
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initTheme();
     
-    // UI Elements for Quiz
+    
     const quizContainer = document.getElementById('quiz-content');
     const resultsContainer = document.getElementById('results-content');
     const questionText = document.getElementById('question-text');
@@ -50,14 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const optionsContainer = document.getElementById('options-container');
     const quizProgressFill = document.getElementById('quiz-progress-fill');
     
-    // Navigation Logic
+    
     function showScreen(screenId) {
         screens.forEach(screen => screen.classList.remove('active'));
         const targetScreen = document.getElementById(screenId);
         if (targetScreen) {
             targetScreen.classList.add('active');
             
-            // If returning to main, we might want to check for saved progress
+            
             if (screenId === 'main-screen') {
                 updateMainScreenStatus();
             }
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const targetScreenId = this.getAttribute('data-screen');
             
-            // Special handling for wine quiz buttons
+            
             if (this.id === 'wine-names-btn') {
                 loadQuiz('names');
                 return;
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // === Cocktail Game Logic ===
+    
     const COCKTAILS = [
         {
             name: "Апельсиновый мартини",
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
             decorations: ["лимон", "палочка"],
             toppings: ["лед"],
             recipe: "1. Налить Мартини Бианко до верхней части надписи логотипа 'Аэрофлот'.\n2. Добавить 2-3 кубика льда.\n3. Налить апельсиновый сок до уровня толщины пальца от края стакана.\n4. Перемешать палочкой и украсить долькой лимона.",
-            volumes: { "Мартини Бьянко": 3, "Апельсиновый сок": 4 } // seconds
+            volumes: { "Мартини Бьянко": 3, "Апельсиновый сок": 4 } 
         },
         {
             name: "Джин-Тоник",
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showCocktailMenu();
         });
 
-        // Toggle ingredients menu
+        
         const toggleBtn = document.getElementById('toggle-ingredients');
         const sideMenu = document.getElementById('ingredients-menu');
         const closeMenuBtn = document.getElementById('close-ingredients');
@@ -237,25 +237,25 @@ document.addEventListener('DOMContentLoaded', function() {
             sideMenu.classList.remove('open');
         });
 
-        // Ingredient categories accordions
+        
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => {
                 header.parentElement.classList.toggle('active');
             });
         });
 
-        // Pour logic
+        
         const pourArea = document.getElementById('pour-area');
         pourArea.addEventListener('mousedown', startPouring);
         pourArea.addEventListener('touchstart', (e) => { e.preventDefault(); startPouring(); });
         window.addEventListener('mouseup', stopPouring);
         window.addEventListener('touchend', stopPouring);
 
-        // Decor buttons
+        
         document.getElementById('add-lemon-btn').addEventListener('click', toggleLemon);
         document.getElementById('add-stick-btn').addEventListener('click', toggleStick);
         
-        // Recipe hint
+        
         document.getElementById('recipe-hint-btn').addEventListener('click', () => {
             showRecipeModal(currentGame.cocktail);
         });
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function showCocktailMenu() {
-        // Prepare list of ingredients
+        
         const alcList = document.getElementById('list-alcohol');
         const softList = document.getElementById('list-soft');
         const toppingList = document.getElementById('list-toppings');
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
         softList.innerHTML = '';
         toppingList.innerHTML = '';
 
-        // Alcohol from descriptions
+        
         if (descriptionsQuestions.length === 0) {
             const resp = await fetch('data/wine_descriptions.json');
             descriptionsQuestions = await resp.json();
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alcList.appendChild(item);
         });
 
-        // Soft drinks (SVG)
+        
         const softs = [
             { name: "Апельсиновый сок", color: "#FFA500" },
             { name: "Яблочный сок", color: "#F0E68C" },
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
             softList.appendChild(item);
         });
 
-        // Toppings
+        
         const toppings = [
             { name: "Долька лимона", type: "lemon" },
             { name: "Листик мяты", type: "mint" },
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
             toppingList.appendChild(item);
         });
 
-        // Randomly pick a cocktail to prepare
+        
         const randomCocktail = COCKTAILS[Math.floor(Math.random() * COCKTAILS.length)];
         startNewGame(randomCocktail);
         showRecipeModal(randomCocktail);
@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
             pourStartTime: 0,
             selectedIngredient: null
         };
-        // Reset UI
+        
         document.getElementById('liquid-layer').style.height = '0%';
         document.getElementById('decorations-container').innerHTML = '';
         document.getElementById('add-lemon-btn').classList.remove('active');
@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('pour-area').classList.remove('active');
         document.getElementById('pour-area').querySelector('span').textContent = 'Удерживайте, чтобы налить';
 
-        // Add Finish button
+        
         let finishBtn = document.getElementById('finish-cocktail-btn');
         if (!finishBtn) {
             finishBtn = document.createElement('button');
@@ -383,13 +383,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const cocktail = currentGame.cocktail;
         let errors = [];
 
-        // Check ingredients
+        
         const pouredNames = currentGame.pouredIngredients.map(i => i.name);
         cocktail.ingredients.forEach(ing => {
             if (!pouredNames.includes(ing)) errors.push(`Отсутствует ингредиент: ${ing}`);
         });
 
-        // Check volumes (time)
+        
         currentGame.pouredIngredients.forEach(p => {
             const targetTime = cocktail.volumes[p.name];
             if (targetTime) {
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Check decorations
+        
         if (cocktail.decorations.includes('lemon') && !currentGame.addedDecorations.includes('lemon')) {
             errors.push("Забыли лимон на край бокала");
         }
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentGame.selectedIngredient = { name, color };
         document.getElementById('pour-area').classList.add('active');
         document.getElementById('pour-area').querySelector('span').textContent = `Налить ${name}`;
-        // Close menu on mobile
+        
         if (window.innerWidth < 768) {
             document.getElementById('ingredients-menu').classList.remove('open');
         }
@@ -441,11 +441,11 @@ document.addEventListener('DOMContentLoaded', function() {
         currentGame.isPouring = true;
         currentGame.pourStartTime = Date.now();
         
-        // Animation
+        
         const liquid = document.getElementById('liquid-layer');
         liquid.style.backgroundColor = currentGame.selectedIngredient.color;
         
-        // Bottle animation
+        
         const animContainer = document.getElementById('pour-animation-container');
         animContainer.innerHTML = `<div class="pouring-bottle" style="background: ${currentGame.selectedIngredient.color}; height: 10px; width: 40px; border-radius: 5px; transform-origin: left; animation: pour 0.5s forwards;"></div>`;
     }
@@ -460,10 +460,10 @@ document.addEventListener('DOMContentLoaded', function() {
             duration: duration
         });
 
-        // Update visual height
+        
         const liquid = document.getElementById('liquid-layer');
         let currentHeight = parseFloat(liquid.style.height) || 0;
-        currentHeight += duration * 10; // 1 second = 10% height
+        currentHeight += duration * 10; 
         if (currentHeight > 95) currentHeight = 95;
         liquid.style.height = `${currentHeight}%`;
         
@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addTopping(type) {
-        // Just visual for now
+        
         const container = document.getElementById('decorations-container');
         const item = document.createElement('div');
         item.className = `topping-${type}`;
@@ -549,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initCocktailGame();
 
-    // === Randomizer Logic ===
+    
     function initRandomizer() {
         const randomDrinkBtn = document.getElementById('random-drink-btn');
         const randomCocktailBtn = document.getElementById('random-cocktail-btn');
@@ -583,9 +583,9 @@ document.addEventListener('DOMContentLoaded', function() {
             resultText.style.display = 'block';
             resultText.textContent = text;
             
-            // Re-trigger animation
+            
             resultText.style.animation = 'none';
-            resultText.offsetHeight; // trigger reflow
+            resultText.offsetHeight; 
             resultText.style.animation = null;
         }
 
@@ -595,7 +595,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     initRandomizer();
 
-    // === Levenshtein Distance for Answer Verification ===
+    
     function getLevenshteinDistance(a, b) {
         if (a.length === 0) return b.length;
         if (b.length === 0) return a.length;
@@ -624,14 +624,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return similarity >= 0.7;
     }
 
-    // === Quiz Logic ===
+    
     let allQuestions = [];
-    let currentQuestions = []; // Questions for the current round
+    let currentQuestions = []; 
     let currentIndex = 0;
     let wrongAnswers = [];
     let isReviewMode = false;
     let currentSessionData = null;
-    let quizType = 'names'; // 'names', 'descriptions', or 'random'
+    let quizType = 'names'; 
     let currentOptions = [];
     let currentOptionIndex = 0;
     let namesQuestions = [];
@@ -647,7 +647,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { key: 'temperature', label: 'Температура подачи' }
     ];
 
-    // Load quiz data
+    
     async function loadQuiz(type) {
         quizType = type;
         const sessionKey = type === 'names' ? 'wine_names_session' : 
@@ -666,7 +666,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 descriptionsQuestions.forEach(q => {
                     q.type = 'descriptions';
                     
-                    // Parse categories from description if they are missing
+                    
                     if (q.description) {
                         const colorMatch = q.description.match(/Цвет:\s*(.*?)(?=\n|$)/i);
                         const aromaMatch = q.description.match(/Аромат:\s*(.*?)(?=\n|$)/i);
@@ -698,15 +698,15 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (type === 'descriptions') {
                 allQuestions = descriptionsQuestions;
             } else {
-                // Random mode: combine
+                
                 allQuestions = [...namesQuestions, ...descriptionsQuestions];
             }
             
-            // Try to resume session
+            
             const savedSession = localStorage.getItem(sessionKey);
             if (savedSession) {
                 currentSessionData = JSON.parse(savedSession);
-                // Verify session: for random mode we check if it's 15 questions, otherwise full list
+                
                 const expectedLength = type === 'random' ? 15 : allQuestions.length;
                 if (currentSessionData.currentQuestions && 
                    (type === 'random' ? currentSessionData.currentQuestions.length <= 15 : currentSessionData.currentQuestions.length === allQuestions.length)) {
@@ -718,7 +718,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 startNewQuiz(sessionKey);
             }
             
-            // Update title
+            
             let title = 'Тестирование';
             if (type === 'names') title = 'Наименования';
             if (type === 'descriptions') title = 'Описания';
@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let questionsToUse = [...allQuestions];
         
-        // Randomize question mode for names
+        
         questionsToUse.forEach(q => {
             if (q.type === 'names') {
                 q.questionMode = Math.random() > 0.5 ? 'choice' : 'input';
@@ -805,7 +805,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Apply fade-out
+        
         questionContainer.classList.add('fade-out');
         questionContainer.classList.remove('fade-in');
 
@@ -813,15 +813,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const isNameQuestion = quizType === 'names' || (quizType === 'random' && question.type === 'names');
         const nextImageUrl = isNameQuestion ? `img/no_lable/${question.image}` : question.image;
 
-        // Preload image
+        
         const imgPreload = new Image();
         const imageLoaded = new Promise((resolve) => {
             imgPreload.onload = resolve;
-            imgPreload.onerror = resolve; // Continue even if image fails
+            imgPreload.onerror = resolve; 
         });
         imgPreload.src = nextImageUrl;
 
-        // Wait for both animation (fade-out) and image preloading
+        
         await Promise.all([
             new Promise(resolve => setTimeout(resolve, 300)),
             imageLoaded
@@ -834,7 +834,7 @@ document.addEventListener('DOMContentLoaded', function() {
             optionsContainer.innerHTML = '';
             
             if (question.questionMode === 'choice') {
-                // Prepare options: correct answer + 3 random others
+                
                 let options = [question.answer];
                 const otherAnswers = namesQuestions
                     .filter(q => q.answer !== question.answer)
@@ -852,7 +852,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     optionsContainer.appendChild(btn);
                 });
             } else {
-                // Input mode
+                
                 const inputContainer = document.createElement('div');
                 inputContainer.className = 'answer-input-container';
                 
@@ -889,19 +889,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.focus();
             }
         } else {
-            // Logic for 'descriptions'
-            // Pick random category
+            
+            
             const category = DESCRIPTION_CATEGORIES[Math.floor(Math.random() * DESCRIPTION_CATEGORIES.length)];
             question.currentCategory = category;
             
             questionText.textContent = `${question.name} (${category.label})`;
             questionImage.src = nextImageUrl;
             
-            // Prepare 3 options of the SAME category
+            
             const correctAnswer = question[category.key];
             
-            // If correctAnswer is missing, we should probably pick another category or skip
-            // For now, let's ensure we have a fallback
+            
+            
             const actualCorrectAnswer = correctAnswer || "Информация отсутствует";
             let options = [actualCorrectAnswer];
             
@@ -923,14 +923,14 @@ document.addEventListener('DOMContentLoaded', function() {
             renderDescriptionSwitcher();
         }
 
-        // Update progress bar
+        
         const progress = (currentIndex / currentQuestions.length) * 100;
         quizProgressFill.style.width = `${progress}%`;
         
         quizContainer.style.display = 'flex';
         resultsContainer.style.display = 'none';
 
-        // Apply fade-in
+        
         questionContainer.classList.remove('fade-out');
         questionContainer.classList.add('fade-in');
     }
@@ -990,20 +990,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 isCorrect = selectedOption === correctAnswer;
             } else {
                 isCorrect = checkSimilarity(selectedOption, correctAnswer);
-                // In input mode, show the correct name anyway
+                
                 if (inputField) {
                     inputField.value = correctAnswer;
                     inputField.disabled = true;
                 }
             }
-            // Change image to labeled version
+            
             questionImage.src = `img/lable/${question.image}`;
         } else {
             correctAnswer = question[question.currentCategory.key];
             isCorrect = selectedOption === correctAnswer;
         }
         
-        // Disable interaction
+        
         optionsContainer.style.pointerEvents = 'none';
 
         if (isCorrect) {
@@ -1018,8 +1018,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             } else if (!isNameQuestion) {
-                // For descriptions, find the correct answer in currentOptions and show it if possible
-                // Since it's a switcher, it's better to just show a toast or highlight after a delay
+                
+                
                 showToast(`Неверно. Правильный ответ: ${correctAnswer || actualCorrectAnswer}`);
             }
             if (!wrongAnswers.find(q => q.id === question.id && q.type === question.type)) {
@@ -1027,7 +1027,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Wait before next question
+        
         setTimeout(() => {
             optionsContainer.style.pointerEvents = 'all';
             currentIndex++;
@@ -1063,9 +1063,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // === Menu & Buttons Events ===
     
-    // Submenu item "Наименования"
+    
+    
     const wineNamesBtn = document.getElementById('wine-names-btn');
     if (wineNamesBtn) {
         wineNamesBtn.addEventListener('click', (e) => {
@@ -1074,7 +1074,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Submenu item "Описания"
+    
     const wineDescriptionsBtn = document.getElementById('wine-descriptions-btn');
     if (wineDescriptionsBtn) {
         wineDescriptionsBtn.addEventListener('click', (e) => {
@@ -1083,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Submenu item "Все подряд"
+    
     const randomQuizBtn = document.getElementById('random-quiz-btn');
     if (randomQuizBtn) {
         randomQuizBtn.addEventListener('click', (e) => {
@@ -1092,14 +1092,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Quiz Menu Trigger
+    
     if (menuTriggerBtn) {
         menuTriggerBtn.addEventListener('click', () => {
             quizMenuOverlay.classList.add('active');
         });
     }
 
-    // Quiz Menu Actions
+    
     document.getElementById('resume-quiz').addEventListener('click', () => {
         quizMenuOverlay.classList.remove('active');
     });
@@ -1114,10 +1114,10 @@ document.addEventListener('DOMContentLoaded', function() {
         showScreen('main-screen');
     });
 
-    // Results Retry Button
+    
     document.getElementById('retry-btn').addEventListener('click', () => {
         if (wrongAnswers.length > 0) {
-            // Error correction mode
+            
             isReviewMode = true;
             currentQuestions = shuffleArray([...wrongAnswers]);
             wrongAnswers = [];
@@ -1138,10 +1138,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function updateMainScreenStatus() {
-        // Optional: show "Continue" badge or similar if session exists
+        
     }
 
-    // Handle touch events to prevent zoom
+    
     document.addEventListener('touchstart', function(event) {
         if (event.touches.length > 1) {
             event.preventDefault();

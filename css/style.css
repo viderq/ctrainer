@@ -230,7 +230,7 @@ body {
     text-align: center;
 }
 
-/* Randomizer Section */
+
 .randomizer-section {
     margin-top: 30px;
     padding: 20px;
@@ -368,7 +368,7 @@ body {
     border-top: 1px solid var(--header-border);
 }
 
-/* Toast Notification */
+
 .toast {
     position: fixed;
     bottom: 30px;
@@ -449,13 +449,13 @@ body {
     height: 250px;
     display: flex;
     justify-content: center;
-    align-items: center; /* Center the image */
+    align-items: center; 
     margin-bottom: 20px;
     background-color: var(--quiz-bg);
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    flex-shrink: 1; /* Allow shrinking on small screens */
+    flex-shrink: 1; 
     min-height: 100px;
 }
 
@@ -488,7 +488,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Стили для переключателя вариантов в описаниях */
+
 .description-switcher {
     display: flex;
     align-items: center;
@@ -522,7 +522,7 @@ body {
     padding: 15px;
     font-size: 14px;
     color: var(--text-primary);
-    height: 150px; /* Fixed height to prevent resizing */
+    height: 150px; 
     flex: 1;
     display: flex;
     align-items: center;
@@ -590,7 +590,7 @@ body {
     color: #e74c3c;
 }
 
-/* Quiz Menu Overlay */
+
 .quiz-menu-overlay {
     position: absolute;
     top: 0;
@@ -653,7 +653,7 @@ body {
     border-color: #3498db;
 }
 
-/* Results Screen */
+
 .results-container {
     display: flex;
     flex-direction: column;
@@ -662,7 +662,7 @@ body {
     flex-grow: 1;
 }
 
-/* --- Cocktail Game --- */
+
 .cocktail-game-container {
     position: relative;
     height: calc(100vh - 120px);
@@ -861,7 +861,7 @@ body {
     cursor: pointer;
 }
 
-/* Modal */
+
 .modal {
     display: none;
     position: fixed;
@@ -895,7 +895,7 @@ body {
     cursor: pointer;
 }
 
-/* Animations */
+
 @keyframes pour {
     0% { transform: rotate(0deg) translate(0, 0); opacity: 0; }
     20% { opacity: 1; }
@@ -909,7 +909,7 @@ body {
     pointer-events: none;
 }
 
-/* Toast/Notification Styles */
+
 .toast {
     position: fixed;
     bottom: 20px;
@@ -930,9 +930,9 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-/* Input Styles for Quiz */
+
 .answer-input-container {
-    margin-top: auto; /* Push to bottom of available space but above keyboard */
+    margin-top: auto; 
     padding-top: 10px;
     display: flex;
     flex-direction: column;
@@ -995,7 +995,7 @@ body {
     background-color: #2980b9;
 }
 
-/* Specific border colors for colored buttons to maintain contrast */
+
 .btn-main[style*="background-color: #3498db"],
 #retry-btn.btn-main {
     border-color: #2980b9;
@@ -1005,7 +1005,7 @@ body {
     border-color: #7f8c8d;
 }
 
-/* Progress indicator in quiz */
+
 .quiz-progress {
     width: 100%;
     height: 4px;
@@ -1022,7 +1022,7 @@ body {
     transition: width 0.3s ease;
 }
 
-/* Адаптация для мобильных устройств с открытой клавиатурой */
+
 @media (max-height: 500px) {
     .question-image-wrapper {
         height: 120px;
@@ -1040,7 +1040,7 @@ body {
     }
 }
 
-/* Адаптация для очень маленьких экранов */
+
 @media (max-height: 700px) {
     .header {
         padding-bottom: 15px;
@@ -1057,12 +1057,12 @@ body {
     }
 }
 
-/* Скрываем скроллбар для всех браузеров */
+
 * {
-    -ms-overflow-style: none;  /* IE и Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
 }
 
 *::-webkit-scrollbar {
-    display: none; /* Chrome, Safari и Opera */
+    display: none; 
 }
